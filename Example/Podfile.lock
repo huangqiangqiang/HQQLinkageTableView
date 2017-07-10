@@ -1,0 +1,16 @@
+PODS:
+  - HQQLinkageTableView (1.0.0)
+
+DEPENDENCIES:
+  - HQQLinkageTableView (from `../`)
+
+EXTERNAL SOURCES:
+  HQQLinkageTableView:
+    :path: ../
+
+SPEC CHECKSUMS:
+  HQQLinkageTableView: e11c2038df4fe5047b915d5cb21cefc8360b0715
+
+PODFILE CHECKSUM: dbd1ae64e8eccedb429117ee000326ef14c00628
+
+COCOAPODS: 1.2.0

@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'HQQLinkageTableView_Example' do
+  pod 'HQQLinkageTableView', :path => '../'
+
+  target 'HQQLinkageTableView_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

@@ -15,26 +15,44 @@
 
 @implementation HQQLinkageTableView
 
-- (instancetype)init
+- (instancetype)initWithFrame:(CGRect)frame
 {
-    self = [super init];
+    self = [super initWithFrame:frame];
     if (self) {
-        self.leftTableView = [self createTableView];
-        self.rightTableView = [self createTableView];
-        self.rightTableView.contentInset = UIEdgeInsetsMake(64, 0, 49, 0);
-        [self addSubview:self.leftTableView];
-        [self addSubview:self.rightTableView];
+        [self setupUI];
+        
     }
     return self;
 }
 
-- (void)willMoveToSuperview:(UIView *)newSuperview
+- (instancetype)init
 {
-    self.frame = newSuperview.bounds;
+    self = [super init];
+    if (self) {
+        [self setupUI];
+    }
+    return self;
+}
+
+- (void)setupUI
+{
+    self.leftTableView = [self createTableView];
+    self.rightTableView = [self createTableView];
+    [self addSubview:self.leftTableView];
+    [self addSubview:self.rightTableView];
+}
+
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
     CGFloat leftTableViewWidth = self.leftTableViewWidth ? self.leftTableViewWidth : HQQLinkageTableViewDefaultLeftWidth;
     self.leftTableView.frame = CGRectMake(0, 0, leftTableViewWidth, self.frame.size.height);
     CGFloat offsetX = CGRectGetMaxX(self.leftTableView.frame);
     self.rightTableView.frame = CGRectMake(offsetX, 0, self.frame.size.width - offsetX, self.frame.size.height);
+    
+    self.rightTableView.contentInset = self.leftTableView.contentInset;
+    self.rightTableView.scrollIndicatorInsets = self.rightTableView.contentInset;
 }
 
 - (UITableView *)createTableView
@@ -42,10 +60,8 @@
     UITableView *tableView = [[UITableView alloc] init];
     tableView.delegate = self;
     tableView.dataSource = self;
-    
-    tableView.showsVerticalScrollIndicator = NO;
+    tableView.showsVerticalScrollIndicator = YES;
     tableView.showsHorizontalScrollIndicator = NO;
-    
     return tableView;
 }
 
